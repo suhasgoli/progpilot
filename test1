@@ -1,0 +1,18 @@
+<?php
+
+if( isset( $_POST[ 'btnSign' ] ) ) {
+	// Get user input
+	$message =  trim($_POST[ 'mtxMessage' ]) ;
+	$name    = trim($_POST[ 'txtName' ]) ;
+
+	// Update database
+	$query  = "INSERT INTO guestbook (comment,name) VALUES ( '$message', '$name' );";
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query ) or die( '<pre>' . ((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );
+
+} 
+else if($_SERVER['REQUEST_METHOD'] == 'GET'){
+  $query  = "INSERT INTO guestbook (comment,name) VALUES ( 'Wrong http method', 'Unknown' );";
+	$result = mysqli_query($GLOBALS["___mysqli_ston"],  $query ) or die( '<pre>' . ((is_object($GLOBALS["___mysqli_ston"])) ? mysqli_error($GLOBALS["___mysqli_ston"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );
+}
+
+?>
